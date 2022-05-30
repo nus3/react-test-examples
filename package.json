@@ -1,0 +1,10 @@
+{
+  "name": "react-test-examples",
+  "version": "1.0.0",
+  "description": "This repository is examples of react component test",
+  "main": "index.tsx",
+  "author": "nus3 <hadayota33@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "packageManager": "yarn@3.2.1"
+}
