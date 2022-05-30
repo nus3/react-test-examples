@@ -4,16 +4,16 @@ module.exports = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
+    '@storybook/addon-interactions'
   ],
   staticDirs: ['../public'],
   core: {
-    builder: '@storybook/builder-vite',
+    builder: '@storybook/builder-vite'
   },
   features: {
-    storyStoreV7: true,
+    storyStoreV7: true
   },
   async viteFinal(config) {
-    return config
-  },
-}
+    return config;
+  }
+};

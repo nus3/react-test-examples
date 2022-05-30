@@ -1,17 +1,17 @@
-import { VFC, ReactNode } from 'react'
+import { VFC, ReactNode } from 'react';
 
 export type ButtonProps = {
-  children: ReactNode
-  onClick: () => void
-}
+  children: ReactNode;
+  onClick: () => void;
+};
 
 export const Button: VFC<ButtonProps> = ({
   children,
-  onClick,
+  onClick
 }: ButtonProps) => {
   return (
     <button type="button" onClick={onClick}>
       {children}
     </button>
-  )
-}
+  );
+};
