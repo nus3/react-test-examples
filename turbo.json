@@ -3,6 +3,7 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "test": {},
+    "lint": {},
     "dev": {
       "cache": false
     }

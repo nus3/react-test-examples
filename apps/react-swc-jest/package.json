@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint ./ --ext ts,tsx,js,jsx"
   },
   "dependencies": {
     "react": "18.0.0",
@@ -14,7 +15,15 @@
   "devDependencies": {
     "@types/react": "18.0.0",
     "@types/react-dom": "18.0.0",
+    "@typescript-eslint/eslint-plugin": "5.26.0",
+    "@typescript-eslint/experimental-utils": "5.26.0",
+    "@typescript-eslint/parser": "5.26.0",
     "@vitejs/plugin-react": "1.3.0",
+    "eslint": "8.16.0",
+    "eslint-config-next": "12.1.6",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-unused-imports": "2.0.0",
     "typescript": "4.6.3",
     "vite": "2.9.9"
   }

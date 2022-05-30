@@ -11,7 +11,8 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "turbo run dev"
+    "dev": "turbo run dev",
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "turbo": "1.2.14"
