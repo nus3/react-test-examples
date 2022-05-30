@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "types": ["jest"]
   },
-  "include": ["src", "test", "./jest.setup.ts"],
+  "include": ["src", "test", "test/jest.setup.ts"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
