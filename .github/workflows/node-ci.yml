@@ -1,0 +1,95 @@
+name: Node CI
+on:
+  pull_request:
+    branches: ['**']
+  push:
+    branches: [main]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.11.0'
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        # REF: https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh
+        # REF: https://zenn.dev/link/comments/71195269e61d4f
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+      - name: Install dependencies
+        run: yarn --immutable
+
+  test:
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.11.0'
+      # REF:(nus3) https://dev.classmethod.jp/articles/github-actions-parallel-deploy/
+      - name: Restore node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+      - name: 🚨 Test
+        run: yarn test
+
+  lint:
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.11.0'
+      - name: Restore node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+      - name: 💅🏼 Lint
+        run: yarn lint
+      - name: ✅ Type check
+        run: yarn type-check
+
+  build:
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.11.0'
+      # REF:(nus3) https://dev.classmethod.jp/articles/github-actions-parallel-deploy/
+      - name: Restore node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+      - name: 🔨 Build
+        run: yarn build
