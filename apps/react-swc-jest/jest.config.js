@@ -26,5 +26,6 @@ module.exports = {
       '<rootDir>/test/mocks/file.js'
   },
   testMatch: ['<rootDir>/**/?(*.)(spec|test).(ts|js)?(x)'],
-  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/test/vrt/']
+  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/test/vrt/'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts']
 };
