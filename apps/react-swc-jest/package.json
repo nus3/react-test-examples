@@ -8,6 +8,7 @@
     "preview": "vite preview",
     "lint": "eslint ./ --ext ts,tsx,js,jsx",
     "test": "jest",
+    "type-check": "tsc --noEmit",
     "storybook": "start-storybook",
     "build-storybook": "build-storybook"
   },

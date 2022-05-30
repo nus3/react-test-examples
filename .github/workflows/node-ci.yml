@@ -1,0 +1,39 @@
+name: Node CI
+on:
+  pull_request:
+    branches: ['**']
+  push:
+    branches: [main]
+
+jobs:
+  run_all:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.11.0'
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+
+      - name: 📦 Install dependencies
+        run: yarn install --immutable
+
+      - name: 🔨 Build
+        run: yarn build
+
+      - name: 💅🏼 Lint
+        run: yarn lint
+
+      - name: 🚨 test
+        run: yarn test
+
+      - name: ✅ Type check
+        run: yarn type-check
