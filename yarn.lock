@@ -13781,6 +13781,7 @@ __metadata:
     prettier: 2.6.2
     react: 18.0.0
     react-dom: 18.0.0
+    the-new-css-reset: 1.6.1
     typescript: 4.6.3
     vite: 2.9.9
   languageName: unknown
@@ -15468,6 +15469,13 @@ __metadata:
   version: 0.2.0
   resolution: "text-table@npm:0.2.0"
   checksum: b6937a38c80c7f84d9c11dd75e49d5c44f71d95e810a3250bd1f1797fc7117c57698204adf676b71497acc205d769d65c16ae8fa10afad832ae1322630aef10a
+  languageName: node
+  linkType: hard
+
+"the-new-css-reset@npm:1.6.1":
+  version: 1.6.1
+  resolution: "the-new-css-reset@npm:1.6.1"
+  checksum: 4dfa12554a78f15a539414a76b159e8fba681f22708031f81ebf1708a53836cc1ee57d583d6faa570a235979b9b8ca3d6788138082c74b8c9f5f8c2c673f47d3
   languageName: node
   linkType: hard
 
