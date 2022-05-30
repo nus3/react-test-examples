@@ -7,10 +7,15 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint ./ --ext ts,tsx,js,jsx",
+    "test": "jest",
     "storybook": "start-storybook",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "react": "18.0.0",
+    "react-dom": "18.0.0"
+  },
+  "devDependencies": {
     "@storybook/addon-docs": "6.5.6",
     "@storybook/addon-essentials": "6.5.6",
     "@storybook/addon-interactions": "6.5.6",
@@ -18,10 +23,12 @@
     "@storybook/builder-vite": "0.1.35",
     "@storybook/react": "6.5.6",
     "@storybook/testing-library": "0.0.11",
-    "react": "18.0.0",
-    "react-dom": "18.0.0"
-  },
-  "devDependencies": {
+    "@swc/core": "1.2.194",
+    "@swc/jest": "0.2.21",
+    "@testing-library/jest-dom": "5.16.4",
+    "@testing-library/react": "13.3.0",
+    "@testing-library/user-event": "14.2.0",
+    "@types/jest": "27.5.1",
     "@types/react": "18.0.0",
     "@types/react-dom": "18.0.0",
     "@typescript-eslint/eslint-plugin": "5.26.0",
@@ -33,6 +40,9 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-unused-imports": "2.0.0",
+    "jest": "28.1.0",
+    "jest-environment-jsdom": "28.1.0",
+    "prettier": "2.6.2",
     "typescript": "4.6.3",
     "vite": "2.9.9"
   }

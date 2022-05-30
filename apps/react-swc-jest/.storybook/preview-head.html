@@ -1,7 +1,4 @@
-<!--NOTE: builder-viteを使ってるかつ、@storybook/addon-interactionsを使う場合に、jest-mockが原因でReferenceError: global is not definedになる -->
-<!--下記のREFにもあるようにcliからbuilder-viteを使う場合に現在ワークアラウンドでこの実装が入っている -->
-<!-- @storybook/addon-interactionsが依存しているjest-mockが28系になればこの対応は消せそう -->
 <!-- REF: https://github.com/storybookjs/storybook/pull/17830 -->
 <script>
-  window.global = window
+  window.global = window;
 </script>
