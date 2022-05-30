@@ -9,5 +9,11 @@
   "packageManager": "yarn@3.2.1",
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "scripts": {
+    "dev": "turbo run dev"
+  },
+  "devDependencies": {
+    "turbo": "1.2.14"
+  }
 }
