@@ -15,7 +15,8 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "type-check": "turbo run type-check"
+    "type-check": "turbo run type-check",
+    "storybook": "turbo run storybook"
   },
   "devDependencies": {
     "turbo": "1.2.14"
