@@ -21,7 +21,7 @@ describe('useHash', () => {
     });
   });
 
-  test('unmountのテスト', () => {
+  test('should remove event listener when unmount', () => {
     const addEventListenerMock = jest.spyOn(window, 'addEventListener');
     const removeEventListenerMock = jest.spyOn(window, 'removeEventListener');
 
@@ -32,7 +32,7 @@ describe('useHash', () => {
     expect(removeEventListenerMock).toHaveBeenCalled();
   });
 
-  test('updateHash', () => {
+  test('should update url hash', () => {
     const { result } = renderHook(() => useHash());
 
     const updatedHash = 'updatedHash';
