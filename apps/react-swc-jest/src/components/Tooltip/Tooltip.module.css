@@ -1,0 +1,53 @@
+.wrap {
+  position: fixed;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 60px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #333;
+  z-index: 1;
+  transform: translate(-50%, -150%);
+}
+
+.show {
+  transform: translate(-50%, 0);
+}
+.showing {
+  animation: showing 250ms ease-out forwards;
+}
+.hide {
+  transform: translate(-50%, -150%);
+}
+.hiding {
+  animation: hiding 250ms ease-out forwards;
+}
+
+
+.closeBtn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+@keyframes showing {
+  from {
+    transform: (-50%, -150%);
+  }
+  to {
+    transform: (-50%, 0);
+  }
+}
+
+@keyframes hiding {
+  from {
+    transform: (-50%, 0);
+  }
+  to {
+    transform: (-50%, -150%);
+  }
+}
+
