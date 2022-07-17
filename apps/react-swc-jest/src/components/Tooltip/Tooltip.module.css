@@ -10,7 +10,6 @@
   background-color: white;
   border: 1px solid #333;
   z-index: 1;
-  transform: translate(-50%, -150%);
 }
 
 .show {
@@ -26,7 +25,6 @@
   animation: hiding 250ms ease-out forwards;
 }
 
-
 .closeBtn {
   position: absolute;
   right: 10px;
@@ -35,19 +33,18 @@
 
 @keyframes showing {
   from {
-    transform: (-50%, -150%);
+    transform: translate(-50%, -150%);
   }
   to {
-    transform: (-50%, 0);
+    transform: translate(-50%, 0);
   }
 }
 
 @keyframes hiding {
   from {
-    transform: (-50%, 0);
+    transform: translate(-50%, 0);
   }
   to {
-    transform: (-50%, -150%);
+    transform: translate(-50%, -150%);
   }
 }
-

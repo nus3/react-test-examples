@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode, useEffect, useState, VFC } from 'react';
+import { ReactNode, useEffect, useRef, useState, VFC } from 'react';
 
 import styles from './Tooltip.module.css';
 
@@ -8,6 +8,8 @@ export type TooltipProps = {
   onClickClose: () => void;
   show: boolean;
 };
+
+export const TOOLTIP_ANIMATION_TIME = 250;
 
 export const Tooltip: VFC<TooltipProps> = ({
   children,
@@ -18,21 +20,27 @@ export const Tooltip: VFC<TooltipProps> = ({
     'show' | 'showing' | 'hiding' | 'hide'
   >('hide');
 
-  useEffect(() => {
-    let timeoutId: number;
+  const isMountRef = useRef(true);
 
-    // TODO: アニメーションがいい感じにできるようにする
+  useEffect(() => {
+    if (isMountRef.current) {
+      isMountRef.current = false;
+      return;
+    }
+
+    let timeoutId: number;
 
     if (show) {
       setTooltipClass('showing');
+
       timeoutId = window.setTimeout(() => {
         setTooltipClass('show');
-      }, 250);
+      }, TOOLTIP_ANIMATION_TIME);
     } else {
       setTooltipClass('hiding');
       timeoutId = window.setTimeout(() => {
         setTooltipClass('hide');
-      }, 250);
+      }, TOOLTIP_ANIMATION_TIME);
     }
 
     return () => {
@@ -46,7 +54,7 @@ export const Tooltip: VFC<TooltipProps> = ({
     <div className={clsx(styles.wrap, styles[tooltipClass])} role="alert">
       {show && children}
       <button className={styles.closeBtn} onClick={onClickClose}>
-        ×
+        &times;
       </button>
     </div>
   );

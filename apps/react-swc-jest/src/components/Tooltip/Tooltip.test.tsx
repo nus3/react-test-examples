@@ -1,25 +1,65 @@
-import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { composeStories } from '@storybook/testing-react';
+import { act, render, within } from '@testing-library/react';
 
-import { Button } from './Tooltip';
+import { userEventSetup } from '../../../test/helpers/userEventSetup';
+import { TOOLTIP_ANIMATION_TIME } from './Tooltip';
+import * as TooltipStories from './Tooltip.stories';
 
-describe('Button', () => {
-  test('should render label', () => {
-    const label = 'label';
+const { Default } = composeStories(TooltipStories);
 
-    const { getByRole } = render(
-      <Button onClick={() => undefined}>{label}</Button>
-    );
+describe('Tooltip', () => {
+  const tooltipContent = 'Tooltip text';
 
-    expect(getByRole('button')).toHaveTextContent(label);
+  test('should render tooltip', async () => {
+    const { container, getByText } = render(<Default />);
+    await Default.play({ canvasElement: container });
+    expect(getByText(tooltipContent)).toBeInTheDocument();
   });
 
-  test('should call onClick props', async () => {
-    const onClickMock = jest.fn();
+  test('should be showing animation', async () => {
+    jest.useFakeTimers();
 
-    const { getByRole } = render(<Button onClick={onClickMock}>label</Button>);
-    await userEvent.click(getByRole('button'));
+    const { container, getByRole } = render(<Default />);
+    const tooltip = getByRole('alert');
+    expect(tooltip.className).toMatch(/hide/);
 
-    expect(onClickMock).toHaveBeenCalledTimes(1);
+    await Default.play({ canvasElement: container });
+    expect(tooltip.className).toMatch(/showing/);
+
+    act(() => {
+      jest.advanceTimersByTime(TOOLTIP_ANIMATION_TIME);
+    });
+    expect(tooltip.className).toMatch(/show/);
+
+    expect(jest.getTimerCount()).toBe(0);
+
+    jest.useRealTimers();
+  });
+
+  test('should be hiding animation', async () => {
+    jest.useFakeTimers();
+    const user = userEventSetup();
+
+    const { container, getByRole, queryByText } = render(<Default />);
+    const tooltip = getByRole('alert');
+
+    await Default.play({ canvasElement: container });
+    act(() => {
+      jest.advanceTimersByTime(TOOLTIP_ANIMATION_TIME);
+    });
+
+    const closeBtn = within(tooltip).getByRole('button');
+    await user.click(closeBtn);
+
+    expect(tooltip.className).toMatch(/hiding/);
+    act(() => {
+      jest.advanceTimersByTime(TOOLTIP_ANIMATION_TIME);
+    });
+    expect(tooltip.className).toMatch(/hide/);
+    expect(queryByText(tooltipContent)).toBeNull();
+
+    expect(jest.getTimerCount()).toBe(0);
+
+    jest.useRealTimers();
   });
 });

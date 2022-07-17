@@ -1,3 +1,4 @@
+import { userEvent, within } from '@storybook/testing-library';
 import { useState } from 'react';
 
 import { Tooltip, TooltipProps } from './Tooltip';
@@ -20,8 +21,9 @@ const Component = (args: Partial<TooltipProps>) => {
       </Tooltip>
       <button
         onClick={() => {
-          setShow(true);
+          setShow((show) => !show);
         }}
+        data-testid="OpenBtn"
       >
         Show Tooltip
       </button>
@@ -35,5 +37,10 @@ export default {
 } as Meta;
 
 export const Default: ComponentStoryObj<typeof Tooltip> = {
-  args: {}
+  args: {},
+  play: ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const btn = canvas.getByTestId('OpenBtn');
+    userEvent.click(btn);
+  }
 };
