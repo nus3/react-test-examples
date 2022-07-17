@@ -10,15 +10,16 @@ const { Default } = composeStories(TooltipStories);
 describe('Tooltip', () => {
   const tooltipContent = 'Tooltip text';
 
-  test('should render tooltip', async () => {
-    const { container, getByText } = render(<Default />);
-    await Default.play({ canvasElement: container });
-    expect(getByText(tooltipContent)).toBeInTheDocument();
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    expect(jest.getTimerCount()).toBe(0);
+    jest.useRealTimers();
   });
 
   test('should be showing animation', async () => {
-    jest.useFakeTimers();
-
     const { container, getByRole } = render(<Default />);
     const tooltip = getByRole('alert');
     expect(tooltip.className).toMatch(/hide/);
@@ -30,14 +31,9 @@ describe('Tooltip', () => {
       jest.advanceTimersByTime(TOOLTIP_ANIMATION_TIME);
     });
     expect(tooltip.className).toMatch(/show/);
-
-    expect(jest.getTimerCount()).toBe(0);
-
-    jest.useRealTimers();
   });
 
   test('should be hiding animation', async () => {
-    jest.useFakeTimers();
     const user = userEventSetup();
 
     const { container, getByRole, queryByText } = render(<Default />);
@@ -57,9 +53,5 @@ describe('Tooltip', () => {
     });
     expect(tooltip.className).toMatch(/hide/);
     expect(queryByText(tooltipContent)).toBeNull();
-
-    expect(jest.getTimerCount()).toBe(0);
-
-    jest.useRealTimers();
   });
 });
