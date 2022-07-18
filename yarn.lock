@@ -3172,6 +3172,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/csf@npm:0.0.2--canary.87bc651.0":
+  version: 0.0.2--canary.87bc651.0
+  resolution: "@storybook/csf@npm:0.0.2--canary.87bc651.0"
+  dependencies:
+    lodash: ^4.17.15
+  checksum: 1533ff81f7fb59c06fc608f452de3cfcafba5806da68dd2c88813e8284a7aa1c158daee6a58b028b7ccd03d96974b5d3727deaae1d1d38e304b2a7cdcd8a678d
+  languageName: node
+  linkType: hard
+
 "@storybook/docs-tools@npm:6.5.6":
   version: 6.5.6
   resolution: "@storybook/docs-tools@npm:6.5.6"
@@ -3503,6 +3512,21 @@ __metadata:
     "@testing-library/user-event": ^13.2.1
     ts-dedent: ^2.2.0
   checksum: 9d5204e1330cde81811ecacd6fade3246892db45b469a4ac31d906b0d1f330f2a039fa281801f3eb83cf01e67ea429e21d86a92a68ffd2bd0c228d1436affbaa
+  languageName: node
+  linkType: hard
+
+"@storybook/testing-react@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@storybook/testing-react@npm:1.3.0"
+  dependencies:
+    "@storybook/csf": 0.0.2--canary.87bc651.0
+  peerDependencies:
+    "@storybook/addons": ">=6.4.0"
+    "@storybook/client-api": ">=6.4.0"
+    "@storybook/preview-web": ">=6.4.0"
+    "@storybook/react": ">=6.4.0"
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: f7da948bfc100b7a3d8f3ddf02e8d610da80344904761ecdaa7a575dcc312c921ef4a28663edcc719aee587b14716643147b0e10414fa17abb740056cf9e80b5
   languageName: node
   linkType: hard
 
@@ -6343,7 +6367,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^1.0.4":
+"clsx@npm:1.1.1, clsx@npm:^1.0.4":
   version: 1.1.1
   resolution: "clsx@npm:1.1.1"
   checksum: ff052650329773b9b245177305fc4c4dc3129f7b2be84af4f58dc5defa99538c61d4207be7419405a5f8f3d92007c954f4daba5a7b74e563d5de71c28c830063
@@ -9364,6 +9388,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"harmony-reflect@npm:^1.4.6":
+  version: 1.6.2
+  resolution: "harmony-reflect@npm:1.6.2"
+  checksum: 2e5bae414cd2bfae5476147f9935dc69ee9b9a413206994dcb94c5b3208d4555da3d4313aff6fd14bd9991c1e3ef69cdda5c8fac1eb1d7afc064925839339b8c
+  languageName: node
+  linkType: hard
+
 "has-bigints@npm:^1.0.1, has-bigints@npm:^1.0.2":
   version: 1.0.2
   resolution: "has-bigints@npm:1.0.2"
@@ -9782,6 +9813,15 @@ __metadata:
   dependencies:
     postcss: ^7.0.14
   checksum: a4ca2c6b82cb3eb879d635bd4028d74bca174edc49ee48ef5f01988489747d340a389d5a0ac6f6887a5c24ab8fc4386c781daab32a7ade5344a2edff66207635
+  languageName: node
+  linkType: hard
+
+"identity-obj-proxy@npm:3.0.0":
+  version: 3.0.0
+  resolution: "identity-obj-proxy@npm:3.0.0"
+  dependencies:
+    harmony-reflect: ^1.4.6
+  checksum: 97559f8ea2aeaa1a880d279d8c49550dce01148321e00a2102cda5ddf9ce622fa1d7f3efc7bed63458af78889de888fdaebaf31c816312298bb3fdd0ef8aaf2c
   languageName: node
   linkType: hard
 
@@ -13759,6 +13799,7 @@ __metadata:
     "@storybook/builder-vite": 0.1.35
     "@storybook/react": 6.5.6
     "@storybook/testing-library": 0.0.11
+    "@storybook/testing-react": 1.3.0
     "@swc/core": 1.2.194
     "@swc/jest": 0.2.21
     "@testing-library/jest-dom": 5.16.4
@@ -13771,11 +13812,13 @@ __metadata:
     "@typescript-eslint/experimental-utils": 5.26.0
     "@typescript-eslint/parser": 5.26.0
     "@vitejs/plugin-react": 1.3.0
+    clsx: 1.1.1
     eslint: 8.16.0
     eslint-config-next: 12.1.6
     eslint-config-prettier: 8.5.0
     eslint-plugin-import: 2.26.0
     eslint-plugin-unused-imports: 2.0.0
+    identity-obj-proxy: 3.0.0
     jest: 28.1.0
     jest-environment-jsdom: 28.1.0
     prettier: 2.6.2
