@@ -3,11 +3,17 @@ import { FC, useState } from 'react';
 import { getExamples, GetExamplesResponse } from '../../api/example';
 
 export const GetExamplesButton: FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [examples, setExamples] = useState<GetExamplesResponse['examples']>([]);
 
   const handleClick = async () => {
-    const res = await getExamples();
-    setExamples(res.examples);
+    try {
+      setIsLoading(true);
+      const res = await getExamples();
+      setExamples(res.examples);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -15,11 +21,15 @@ export const GetExamplesButton: FC = () => {
       <button type="button" onClick={handleClick}>
         Get examples
       </button>
-      <ul>
-        {examples.map((example) => (
-          <li key={example.id}>{example.name}</li>
-        ))}
-      </ul>
+      {isLoading ? (
+        <p data-testid="Loading">Loading</p>
+      ) : (
+        <ul>
+          {examples.map((example) => (
+            <li key={example.id}>{example.name}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
