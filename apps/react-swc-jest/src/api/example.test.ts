@@ -3,6 +3,8 @@ import { setupServer } from 'msw/node';
 
 import { getExamples, GetExamplesResponse } from './example';
 
+jest.unmock('./example');
+
 describe('/examples', () => {
   const server = setupServer();
   beforeAll(() => server.listen());
