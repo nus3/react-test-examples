@@ -15,7 +15,7 @@ describe('Tooltip', () => {
   });
 
   afterEach(() => {
-    expect(jest.getTimerCount()).toBe(0);
+    jest.runOnlyPendingTimers();
     jest.useRealTimers();
   });
 
