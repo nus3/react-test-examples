@@ -1,17 +1,16 @@
 import { action } from '@storybook/addon-actions';
 
-import { Button } from './Button';
+import { SelectBox } from './SelectBox';
 
 import type { ComponentStoryObj, Meta } from '@storybook/react';
 
 export default {
-  title: 'Button',
-  component: Button
+  title: 'SelectBox',
+  component: SelectBox
 } as Meta;
 
-export const Default: ComponentStoryObj<typeof Button> = {
+export const Default: ComponentStoryObj<typeof SelectBox> = {
   args: {
-    children: 'label',
     onClick: action('onClick')
   }
 };

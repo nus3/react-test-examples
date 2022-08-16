@@ -1,46 +1,11 @@
-import { useState } from 'react';
+import { VFC } from 'react';
 
-import logo from './logo.svg';
-import './App.css';
+import styles from './App.module.css';
 
-function App() {
-  const [count, setCount] = useState(0);
-
+export const App: VFC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <section className={styles.wrap}>
+      <h1 className={styles.title}>React Test Examples</h1>
+    </section>
   );
-}
-
-export default App;
+};

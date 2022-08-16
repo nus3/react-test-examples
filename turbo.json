@@ -6,6 +6,9 @@
     "test": {},
     "lint": {},
     "type-check": {},
+    "storybook": {
+      "cache": false
+    },
     "dev": {
       "cache": false
     }

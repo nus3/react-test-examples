@@ -5,10 +5,7 @@ export type ButtonProps = {
   onClick: () => void;
 };
 
-export const Button: VFC<ButtonProps> = ({
-  children,
-  onClick
-}: ButtonProps) => {
+export const Button: VFC<ButtonProps> = ({ children, onClick }) => {
   return (
     <button type="button" onClick={onClick}>
       {children}
