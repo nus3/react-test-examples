@@ -1,18 +1,18 @@
 import clsx from 'clsx';
 import { ReactNode, useEffect, useRef, useState, FC } from 'react';
 
-import styles from './Tooltip.module.css';
+import styles from './Toast.module.css';
 
-export type TooltipProps = {
+export type ToastProps = {
   children: ReactNode;
   onClickClose: () => void;
   show: boolean;
 };
 
-export const TOOLTIP_ANIMATION_TIME = 250;
+export const TOAST_ANIMATION_TIME = 250;
 
-export const Tooltip: FC<TooltipProps> = ({ children, onClickClose, show }) => {
-  const [tooltipClass, setTooltipClass] = useState<
+export const Toast: FC<ToastProps> = ({ children, onClickClose, show }) => {
+  const [toastClass, setToastClass] = useState<
     'show' | 'showing' | 'hiding' | 'hide'
   >('hide');
 
@@ -27,16 +27,16 @@ export const Tooltip: FC<TooltipProps> = ({ children, onClickClose, show }) => {
     let timeoutId: number;
 
     if (show) {
-      setTooltipClass('showing');
+      setToastClass('showing');
 
       timeoutId = window.setTimeout(() => {
-        setTooltipClass('show');
-      }, TOOLTIP_ANIMATION_TIME);
+        setToastClass('show');
+      }, TOAST_ANIMATION_TIME);
     } else {
-      setTooltipClass('hiding');
+      setToastClass('hiding');
       timeoutId = window.setTimeout(() => {
-        setTooltipClass('hide');
-      }, TOOLTIP_ANIMATION_TIME);
+        setToastClass('hide');
+      }, TOAST_ANIMATION_TIME);
     }
 
     return () => {
@@ -47,7 +47,7 @@ export const Tooltip: FC<TooltipProps> = ({ children, onClickClose, show }) => {
   }, [show]);
 
   return (
-    <div className={clsx(styles.wrap, styles[tooltipClass])} role="alert">
+    <div className={clsx(styles.wrap, styles[toastClass])} role="alert">
       {show && children}
       <button className={styles.closeBtn} onClick={onClickClose}>
         &times;

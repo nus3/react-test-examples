@@ -2,13 +2,13 @@ import { composeStories } from '@storybook/testing-react';
 import { act, render, within } from '@testing-library/react';
 
 import { userEventSetup } from '../../../test/helpers/userEventSetup';
-import { TOOLTIP_ANIMATION_TIME } from './Tooltip';
-import * as TooltipStories from './Tooltip.stories';
+import { TOAST_ANIMATION_TIME } from './Toast';
+import * as ToastStories from './Toast.stories';
 
-const { Default } = composeStories(TooltipStories);
+const { Default } = composeStories(ToastStories);
 
-describe('Tooltip', () => {
-  const tooltipContent = 'Tooltip text';
+describe('Toast', () => {
+  const toastContent = 'Toast text';
 
   beforeEach(() => {
     jest.useFakeTimers();
@@ -21,37 +21,37 @@ describe('Tooltip', () => {
 
   test('should be showing animation', async () => {
     const { container, getByRole } = render(<Default />);
-    const tooltip = getByRole('alert');
-    expect(tooltip.className).toMatch(/hide/);
+    const toast = getByRole('alert');
+    expect(toast.className).toMatch(/hide/);
 
     await Default.play({ canvasElement: container });
-    expect(tooltip.className).toMatch(/showing/);
+    expect(toast.className).toMatch(/showing/);
 
     act(() => {
-      jest.advanceTimersByTime(TOOLTIP_ANIMATION_TIME);
+      jest.advanceTimersByTime(TOAST_ANIMATION_TIME);
     });
-    expect(tooltip.className).toMatch(/show/);
+    expect(toast.className).toMatch(/show/);
   });
 
   test('should be hiding animation', async () => {
     const user = userEventSetup();
 
     const { container, getByRole, queryByText } = render(<Default />);
-    const tooltip = getByRole('alert');
+    const toast = getByRole('alert');
 
     await Default.play({ canvasElement: container });
     act(() => {
-      jest.advanceTimersByTime(TOOLTIP_ANIMATION_TIME);
+      jest.advanceTimersByTime(TOAST_ANIMATION_TIME);
     });
 
-    const closeBtn = within(tooltip).getByRole('button');
+    const closeBtn = within(toast).getByRole('button');
     await user.click(closeBtn);
 
-    expect(tooltip.className).toMatch(/hiding/);
+    expect(toast.className).toMatch(/hiding/);
     act(() => {
-      jest.advanceTimersByTime(TOOLTIP_ANIMATION_TIME);
+      jest.advanceTimersByTime(TOAST_ANIMATION_TIME);
     });
-    expect(tooltip.className).toMatch(/hide/);
-    expect(queryByText(tooltipContent)).toBeNull();
+    expect(toast.className).toMatch(/hide/);
+    expect(queryByText(toastContent)).toBeNull();
   });
 });
