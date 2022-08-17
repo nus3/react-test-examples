@@ -1,6 +1,6 @@
-import { VFC } from 'react';
+import { FC } from 'react';
 
-export const DateText: VFC = () => {
+export const DateText: FC = () => {
   const date = new Date().toLocaleDateString('ja-JP', {
     year: 'numeric',
     month: '2-digit',

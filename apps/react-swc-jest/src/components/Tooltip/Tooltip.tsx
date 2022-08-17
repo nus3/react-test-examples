@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode, useEffect, useRef, useState, VFC } from 'react';
+import { ReactNode, useEffect, useRef, useState, FC } from 'react';
 
 import styles from './Tooltip.module.css';
 
@@ -11,11 +11,7 @@ export type TooltipProps = {
 
 export const TOOLTIP_ANIMATION_TIME = 250;
 
-export const Tooltip: VFC<TooltipProps> = ({
-  children,
-  onClickClose,
-  show
-}) => {
+export const Tooltip: FC<TooltipProps> = ({ children, onClickClose, show }) => {
   const [tooltipClass, setTooltipClass] = useState<
     'show' | 'showing' | 'hiding' | 'hide'
   >('hide');
