@@ -127,8 +127,9 @@ describe('SelectBox', () => {
     const onClickMock = jest.fn();
     render(<SelectBox onClick={onClickMock} />);
 
+    await userEvent.keyboard(`{ArrowRight>3/}`);
     await userEvent.keyboard(key);
 
-    expect(onClickMock).toHaveBeenCalledWith(0);
+    expect(onClickMock).toHaveBeenCalledWith(3);
   });
 });
