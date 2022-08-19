@@ -3,22 +3,17 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { useHash } from './useHash';
 
 describe('useHash', () => {
-  const hashMock = 'hashMock';
-
   beforeEach(() => {
-    window.location.hash = hashMock;
+    window.location.hash = '#hash';
   });
 
   test('should get url hash', async () => {
     const { result } = renderHook(() => useHash());
-    expect(result.current.hash).toBe(`#${hashMock}`);
+    expect(result.current.hash).toBe('#hash');
 
-    const changedHash = 'changedHash';
-    window.location.hash = changedHash;
+    window.location.hash = '#changedHash';
 
-    await waitFor(() => {
-      expect(result.current.hash).toBe(`#${changedHash}`);
-    });
+    await waitFor(() => expect(result.current.hash).toBe('#changedHash'));
   });
 
   test('should remove event listener when unmount', () => {
@@ -26,18 +21,23 @@ describe('useHash', () => {
     const removeEventListenerMock = jest.spyOn(window, 'removeEventListener');
 
     const { unmount } = renderHook(() => useHash());
-    expect(addEventListenerMock).toHaveBeenCalled();
+    expect(addEventListenerMock).toBeCalledWith(
+      'hashchange',
+      expect.any(Function)
+    );
 
     unmount();
-    expect(removeEventListenerMock).toHaveBeenCalled();
+    expect(removeEventListenerMock).toBeCalledWith(
+      'hashchange',
+      expect.any(Function)
+    );
   });
 
   test('should update url hash', () => {
     const { result } = renderHook(() => useHash());
 
-    const updatedHash = 'updatedHash';
-    result.current.updateHash(updatedHash);
+    result.current.updateHash('#updatedHash');
 
-    expect(window.location.hash).toBe(`#${updatedHash}`);
+    expect(window.location.hash).toBe('#updatedHash');
   });
 });

@@ -1,42 +1,42 @@
 import { userEvent, within } from '@storybook/testing-library';
 import { useState } from 'react';
 
-import { Tooltip, TooltipProps } from './Tooltip';
+import { Toast, ToastProps } from './Toast';
 
 import type { ComponentStoryObj, Meta } from '@storybook/react';
 
-const Component = (args: Partial<TooltipProps>) => {
+const Component = (args: Partial<ToastProps>) => {
   const [show, setShow] = useState(false);
 
   return (
     <>
-      <Tooltip
+      <Toast
         show={show}
         onClickClose={() => {
           setShow(false);
         }}
         {...args}
       >
-        Tooltip text
-      </Tooltip>
+        Hello nus3!
+      </Toast>
       <button
         onClick={() => {
           setShow((show) => !show);
         }}
         data-testid="OpenBtn"
       >
-        Show Tooltip
+        Show
       </button>
     </>
   );
 };
 
 export default {
-  title: 'Tooltip',
+  title: 'Toast',
   component: Component
 } as Meta;
 
-export const Default: ComponentStoryObj<typeof Tooltip> = {
+export const Default: ComponentStoryObj<typeof Toast> = {
   args: {},
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);

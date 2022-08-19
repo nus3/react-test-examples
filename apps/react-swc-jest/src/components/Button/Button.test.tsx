@@ -1,24 +1,18 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Button } from './Button';
 
 describe('Button', () => {
   test('should render label', () => {
-    const label = 'label';
-
-    const { getByRole } = render(
-      <Button onClick={() => undefined}>{label}</Button>
-    );
-
-    expect(getByRole('button')).toHaveTextContent(label);
+    render(<Button onClick={() => undefined}>label</Button>);
+    expect(screen.getByRole('button')).toHaveTextContent('label');
   });
 
-  test('should call onClick props', async () => {
+  test('should call onClick', async () => {
     const onClickMock = jest.fn();
-
-    const { getByRole } = render(<Button onClick={onClickMock}>label</Button>);
-    await userEvent.click(getByRole('button'));
+    render(<Button onClick={onClickMock}>label</Button>);
+    await userEvent.click(screen.getByRole('button'));
 
     expect(onClickMock).toHaveBeenCalledTimes(1);
   });

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, VFC } from 'react';
+import { useEffect, useRef, useState, FC } from 'react';
 
 import { useFocus } from './useFocus';
 
@@ -11,7 +11,7 @@ export type SelectBoxProps = {
   defaultValue?: number;
 };
 
-const SelectButton: VFC<{
+const SelectButton: FC<{
   onClick: (value: number) => void;
   value: number;
   focused: boolean;
@@ -43,7 +43,7 @@ const SelectButton: VFC<{
   );
 };
 
-export const SelectBox: VFC<SelectBoxProps> = ({ onClick, defaultValue }) => {
+export const SelectBox: FC<SelectBoxProps> = ({ onClick, defaultValue }) => {
   const [selectedValue, setSelectedValue] = useState(defaultValue);
   const { focusedValue, moveFocus } = useFocus(SELECT_BOX_VALUES, defaultValue);
 

@@ -1,15 +1,13 @@
-import { render, within } from '@testing-library/react';
+import { render, within, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { SelectBox } from './SelectBox';
 
 describe('SelectBox', () => {
   test('should focus move to right cell with right key', async () => {
-    const { getAllByRole, getByRole } = render(
-      <SelectBox onClick={() => undefined} />
-    );
+    render(<SelectBox onClick={() => undefined} />);
 
-    const cells = getAllByRole('gridcell');
+    const cells = screen.getAllByRole('gridcell');
     expect(cells.length).toBe(4);
 
     const firstCellBtn = within(cells[0]).getByRole('button');
@@ -21,18 +19,16 @@ describe('SelectBox', () => {
     await userEvent.keyboard('{ArrowRight}');
     expect(secondCellBtn).toHaveFocus();
 
-    expect(getByRole('grid')).toHaveAttribute(
+    expect(screen.getByRole('grid')).toHaveAttribute(
       'aria-activedescendant',
       'selectBoxCell_1'
     );
   });
 
   test('should focus move to last cell with left key when first cell focused', async () => {
-    const { getAllByRole, getByRole } = render(
-      <SelectBox onClick={() => undefined} />
-    );
+    render(<SelectBox onClick={() => undefined} />);
 
-    const cells = getAllByRole('gridcell');
+    const cells = screen.getAllByRole('gridcell');
 
     const firstCellBtn = within(cells[0]).getByRole('button');
     expect(firstCellBtn).toHaveFocus();
@@ -42,18 +38,16 @@ describe('SelectBox', () => {
 
     await userEvent.keyboard('{ArrowLeft}');
     expect(lastCellBtn).toHaveFocus();
-    expect(getByRole('grid')).toHaveAttribute(
+    expect(screen.getByRole('grid')).toHaveAttribute(
       'aria-activedescendant',
       'selectBoxCell_3'
     );
   });
 
   test('should focus move to first cell with right key when last cell focused', async () => {
-    const { getAllByRole, getByRole } = render(
-      <SelectBox onClick={() => undefined} defaultValue={3} />
-    );
+    render(<SelectBox onClick={() => undefined} defaultValue={3} />);
 
-    const cells = getAllByRole('gridcell');
+    const cells = screen.getAllByRole('gridcell');
 
     const firstCellBtn = within(cells[0]).getByRole('button');
     expect(firstCellBtn).not.toHaveFocus();
@@ -63,18 +57,16 @@ describe('SelectBox', () => {
 
     await userEvent.keyboard('{ArrowRight}');
     expect(firstCellBtn).toHaveFocus();
-    expect(getByRole('grid')).toHaveAttribute(
+    expect(screen.getByRole('grid')).toHaveAttribute(
       'aria-activedescendant',
       'selectBoxCell_0'
     );
   });
 
   test('should focus move to last cell with right key when right key press 3times', async () => {
-    const { getAllByRole, getByRole } = render(
-      <SelectBox onClick={() => undefined} />
-    );
+    render(<SelectBox onClick={() => undefined} />);
 
-    const cells = getAllByRole('gridcell');
+    const cells = screen.getAllByRole('gridcell');
 
     const firstCellBtn = within(cells[0]).getByRole('button');
     expect(firstCellBtn).toHaveFocus();
@@ -84,18 +76,16 @@ describe('SelectBox', () => {
 
     await userEvent.keyboard(`{ArrowRight>3/}`);
     expect(lastCellBtn).toHaveFocus();
-    expect(getByRole('grid')).toHaveAttribute(
+    expect(screen.getByRole('grid')).toHaveAttribute(
       'aria-activedescendant',
       'selectBoxCell_3'
     );
   });
 
   test('should focus move to first cell with left key when left key press 3times', async () => {
-    const { getAllByRole, getByRole } = render(
-      <SelectBox onClick={() => undefined} defaultValue={3} />
-    );
+    render(<SelectBox onClick={() => undefined} defaultValue={3} />);
 
-    const cells = getAllByRole('gridcell');
+    const cells = screen.getAllByRole('gridcell');
 
     const firstCellBtn = within(cells[0]).getByRole('button');
     expect(firstCellBtn).not.toHaveFocus();
@@ -105,18 +95,16 @@ describe('SelectBox', () => {
 
     await userEvent.keyboard(`{ArrowLeft>3/}`);
     expect(firstCellBtn).toHaveFocus();
-    expect(getByRole('grid')).toHaveAttribute(
+    expect(screen.getByRole('grid')).toHaveAttribute(
       'aria-activedescendant',
       'selectBoxCell_0'
     );
   });
 
   test('should focus move to first cell with left key when left key press 3times', async () => {
-    const { getAllByRole, getByRole } = render(
-      <SelectBox onClick={() => undefined} defaultValue={3} />
-    );
+    render(<SelectBox onClick={() => undefined} defaultValue={3} />);
 
-    const cells = getAllByRole('gridcell');
+    const cells = screen.getAllByRole('gridcell');
 
     const firstCellBtn = within(cells[0]).getByRole('button');
     expect(firstCellBtn).not.toHaveFocus();
@@ -126,7 +114,7 @@ describe('SelectBox', () => {
 
     await userEvent.keyboard(`{ArrowLeft>3/}`);
     expect(firstCellBtn).toHaveFocus();
-    expect(getByRole('grid')).toHaveAttribute(
+    expect(screen.getByRole('grid')).toHaveAttribute(
       'aria-activedescendant',
       'selectBoxCell_0'
     );
@@ -139,8 +127,9 @@ describe('SelectBox', () => {
     const onClickMock = jest.fn();
     render(<SelectBox onClick={onClickMock} />);
 
+    await userEvent.keyboard(`{ArrowRight>3/}`);
     await userEvent.keyboard(key);
 
-    expect(onClickMock).toHaveBeenCalledWith(0);
+    expect(onClickMock).toHaveBeenCalledWith(3);
   });
 });

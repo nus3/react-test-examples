@@ -1,15 +1,16 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { DateText } from './DateText';
 
 describe('DateText', () => {
   test('should render date', () => {
-    const currentDate = '1991/08/02';
-    jest.useFakeTimers().setSystemTime(new Date(currentDate).getTime());
+    jest.useFakeTimers();
+    jest.setSystemTime(new Date('1991/08/02').getTime());
 
-    const { getByText } = render(<DateText />);
-    expect(getByText(currentDate)).toBeInTheDocument();
+    render(<DateText />);
+    expect(screen.getByText('1991/08/02')).toBeInTheDocument();
 
+    jest.runOnlyPendingTimers();
     jest.useRealTimers();
   });
 });
