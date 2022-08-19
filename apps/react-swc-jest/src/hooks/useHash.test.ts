@@ -26,10 +26,16 @@ describe('useHash', () => {
     const removeEventListenerMock = jest.spyOn(window, 'removeEventListener');
 
     const { unmount } = renderHook(() => useHash());
-    expect(addEventListenerMock).toHaveBeenCalled();
+    expect(addEventListenerMock).toBeCalledWith(
+      'hashchange',
+      expect.any(Function)
+    );
 
     unmount();
-    expect(removeEventListenerMock).toHaveBeenCalled();
+    expect(removeEventListenerMock).toBeCalledWith(
+      'hashchange',
+      expect.any(Function)
+    );
   });
 
   test('should update url hash', () => {
