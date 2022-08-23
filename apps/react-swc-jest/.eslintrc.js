@@ -9,11 +9,19 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  plugins: ['unused-imports'],
+  plugins: ['unused-imports', 'testing-library'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'next/core-web-vitals',
+    'plugin:testing-library/react',
     'prettier'
+  ],
+  overrides: [
+    {
+      // 3) Now we enable eslint-plugin-testing-library rules or preset only for matching testing files!
+      files: ['**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react']
+    }
   ],
   rules: {
     'import/order': [
