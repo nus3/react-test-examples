@@ -38,9 +38,7 @@ describe('GetExamplesButton', () => {
     render(<GetExamplesButton />);
     await user.click(screen.getByRole('button'));
 
-    await waitFor(() =>
-      expect(screen.getByTestId('Loading')).toBeInTheDocument()
-    );
+    await screen.findByTestId('Loading');
     act(() => {
       jest.advanceTimersByTime(500);
     });

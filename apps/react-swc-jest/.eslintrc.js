@@ -9,11 +9,17 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  plugins: ['unused-imports'],
+  plugins: ['unused-imports', 'testing-library'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'next/core-web-vitals',
     'prettier'
+  ],
+  overrides: [
+    {
+      files: ['**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react']
+    }
   ],
   rules: {
     'import/order': [
