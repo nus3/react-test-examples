@@ -1,46 +1,21 @@
 import { userEvent, within } from '@storybook/testing-library';
-import { useState } from 'react';
 
-import { Toast, ToastProps } from './Toast';
+import { Toast } from './Toast';
 
 import type { ComponentStoryObj, Meta } from '@storybook/react';
 
-const Component = (args: Partial<ToastProps>) => {
-  const [show, setShow] = useState(false);
-
-  return (
-    <>
-      <Toast
-        show={show}
-        onClickClose={() => {
-          setShow(false);
-        }}
-        {...args}
-      >
-        Hello nus3!
-      </Toast>
-      <button
-        onClick={() => {
-          setShow((show) => !show);
-        }}
-        data-testid="OpenBtn"
-      >
-        Show
-      </button>
-    </>
-  );
-};
-
 export default {
   title: 'Toast',
-  component: Component
+  component: Toast
 } as Meta;
 
 export const Default: ComponentStoryObj<typeof Toast> = {
-  args: {},
+  args: {
+    children: 'Hello nus3 in Storybook!!'
+  },
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const btn = canvas.getByTestId('OpenBtn');
+    const btn = canvas.getByRole('button');
     userEvent.click(btn);
   }
 };

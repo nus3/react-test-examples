@@ -5,16 +5,16 @@ import styles from './Toast.module.css';
 
 export type ToastProps = {
   children: ReactNode;
-  onClickClose: () => void;
-  show: boolean;
 };
 
+export const AUTO_CLOSE_TIME = 1500;
 export const TOAST_ANIMATION_TIME = 250;
 
-export const Toast: FC<ToastProps> = ({ children, onClickClose, show }) => {
-  const [toastClass, setToastClass] = useState<
-    'show' | 'showing' | 'hiding' | 'hide'
-  >('hide');
+export const Toast: FC<ToastProps> = ({ children }) => {
+  const [show, setShow] = useState(false);
+  const [toastClass, setToastClass] = useState<'showing' | 'hiding' | 'hide'>(
+    'hide'
+  );
 
   const isMountRef = useRef(true);
 
@@ -24,34 +24,47 @@ export const Toast: FC<ToastProps> = ({ children, onClickClose, show }) => {
       return;
     }
 
-    let timeoutId: number;
+    let autoCloseTimerId: number;
+    let animationTimerId: number;
 
     if (show) {
       setToastClass('showing');
 
-      timeoutId = window.setTimeout(() => {
-        setToastClass('show');
-      }, TOAST_ANIMATION_TIME);
-    } else {
-      setToastClass('hiding');
-      timeoutId = window.setTimeout(() => {
+      autoCloseTimerId = window.setTimeout(() => {
+        setToastClass('hiding');
+      }, AUTO_CLOSE_TIME);
+
+      window.setTimeout(() => {
         setToastClass('hide');
-      }, TOAST_ANIMATION_TIME);
+        setShow(false);
+      }, AUTO_CLOSE_TIME + TOAST_ANIMATION_TIME);
     }
 
     return () => {
-      if (timeoutId) {
-        window.clearTimeout(timeoutId);
+      if (autoCloseTimerId) {
+        window.clearTimeout(autoCloseTimerId);
+      }
+      if (animationTimerId) {
+        window.clearTimeout(animationTimerId);
       }
     };
   }, [show]);
 
   return (
-    <div className={clsx(styles.wrap, styles[toastClass])} role="alert">
-      {show && children}
-      <button className={styles.closeBtn} onClick={onClickClose}>
-        &times;
+    <div>
+      <button
+        disabled={show}
+        onClick={() => {
+          setShow((show) => !show);
+        }}
+      >
+        Show
       </button>
+      {show && (
+        <div className={clsx(styles.toast, styles[toastClass])} role="alert">
+          {show && children}
+        </div>
+      )}
     </div>
   );
 };
