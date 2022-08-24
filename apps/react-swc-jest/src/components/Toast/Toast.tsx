@@ -34,7 +34,7 @@ export const Toast: FC<ToastProps> = ({ children }) => {
         setToastClass('hiding');
       }, AUTO_CLOSE_TIME);
 
-      window.setTimeout(() => {
+      animationTimerId = window.setTimeout(() => {
         setToastClass('hide');
         setShow(false);
       }, AUTO_CLOSE_TIME + TOAST_ANIMATION_TIME);
@@ -62,7 +62,7 @@ export const Toast: FC<ToastProps> = ({ children }) => {
       </button>
       {show && (
         <div className={clsx(styles.toast, styles[toastClass])} role="alert">
-          {show && children}
+          {children}
         </div>
       )}
     </div>
