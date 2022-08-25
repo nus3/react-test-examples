@@ -1,4 +1,4 @@
-.wrap {
+.toast {
   position: fixed;
   left: 50%;
   display: flex;
@@ -12,9 +12,6 @@
   z-index: 1;
 }
 
-.show {
-  transform: translate(-50%, 0);
-}
 .showing {
   animation: showing 250ms ease-out forwards;
 }
@@ -23,6 +20,7 @@
 }
 .hiding {
   animation: hiding 250ms ease-out forwards;
+  transform: translate(-50%, -150%);
 }
 
 .closeBtn {
