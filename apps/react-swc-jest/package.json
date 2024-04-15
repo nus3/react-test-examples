@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "clsx": "1.1.1",
-    "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@storybook/addon-docs": "6.5.6",
@@ -32,12 +32,12 @@
     "@testing-library/react": "13.3.0",
     "@testing-library/user-event": "14.2.0",
     "@types/jest": "27.5.1",
-    "@types/react": "18.0.0",
-    "@types/react-dom": "18.0.0",
+    "@types/react": "18.2.25",
+    "@types/react-dom": "18.2.25",
     "@typescript-eslint/eslint-plugin": "5.26.0",
     "@typescript-eslint/experimental-utils": "5.26.0",
     "@typescript-eslint/parser": "5.26.0",
-    "@vitejs/plugin-react": "1.3.0",
+    "@vitejs/plugin-react": "4.2.1",
     "eslint": "8.16.0",
     "eslint-config-next": "12.1.6",
     "eslint-config-prettier": "8.5.0",
@@ -49,8 +49,9 @@
     "jest-environment-jsdom": "28.1.0",
     "msw": "0.44.2",
     "prettier": "2.6.2",
-    "typescript": "4.6.3",
-    "vite": "2.9.9",
+    "typescript": "5.2.2",
+    "vite": "5.2.8",
+    "vitest": "1.5.0",
     "whatwg-fetch": "3.6.2"
   }
 }
