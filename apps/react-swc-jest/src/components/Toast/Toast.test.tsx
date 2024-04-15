@@ -1,5 +1,6 @@
 import { composeStories } from '@storybook/testing-react';
 import { act, render, screen } from '@testing-library/react';
+import { afterEach, describe, test, beforeEach, vi, expect } from 'vitest';
 
 import { userEventSetup } from '../../../test/helpers/userEventSetup';
 import { AUTO_CLOSE_TIME, Toast, TOAST_ANIMATION_TIME } from './Toast';
@@ -9,12 +10,12 @@ const { Default } = composeStories(ToastStories);
 
 describe('Toast', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.runOnlyPendingTimers();
-    jest.useRealTimers();
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
   });
 
   test('should be show and hide toast', async () => {
@@ -27,7 +28,7 @@ describe('Toast', () => {
     expect(screen.getByRole('alert')).toBeInTheDocument();
 
     act(() => {
-      jest.advanceTimersByTime(TOAST_ANIMATION_TIME + AUTO_CLOSE_TIME);
+      vi.advanceTimersByTime(TOAST_ANIMATION_TIME + AUTO_CLOSE_TIME);
     });
 
     expect(screen.queryByRole('alert')).toBeNull();
@@ -41,7 +42,7 @@ describe('Toast', () => {
     expect(screen.getByRole('alert')).toBeInTheDocument();
 
     act(() => {
-      jest.advanceTimersByTime(TOAST_ANIMATION_TIME + AUTO_CLOSE_TIME);
+      vi.advanceTimersByTime(TOAST_ANIMATION_TIME + AUTO_CLOSE_TIME);
     });
 
     expect(screen.queryByRole('alert')).toBeNull();

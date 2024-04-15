@@ -1,9 +1,19 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
+import {
+  afterAll,
+  afterEach,
+  describe,
+  test,
+  vi,
+  beforeAll,
+  beforeEach,
+  expect
+} from 'vitest';
 
 import { getExamples, GetExamplesResponse } from './example';
 
-jest.unmock('./example');
+vi.unmock('./example');
 
 describe('/examples', () => {
   const server = setupServer();

@@ -1,5 +1,6 @@
 import { render, within, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, test, vi, expect } from 'vitest';
 
 import { SelectBox } from './SelectBox';
 
@@ -124,7 +125,7 @@ describe('SelectBox', () => {
     { key: '{Enter}', keyName: 'Enter' },
     { key: ' ', keyName: 'Space' }
   ])('should call onClick props when $keyName key press', async ({ key }) => {
-    const onClickMock = jest.fn();
+    const onClickMock = vi.fn();
     render(<SelectBox onClick={onClickMock} />);
 
     await userEvent.keyboard(`{ArrowRight>3/}`);

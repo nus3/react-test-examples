@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from '@testing-library/react';
+import { describe, test, vi, expect } from 'vitest';
 
 import { useHash } from './useHash';
 
@@ -17,8 +18,8 @@ describe('useHash', () => {
   });
 
   test('should remove event listener when unmount', () => {
-    const addEventListenerMock = jest.spyOn(window, 'addEventListener');
-    const removeEventListenerMock = jest.spyOn(window, 'removeEventListener');
+    const addEventListenerMock = vi.spyOn(window, 'addEventListener');
+    const removeEventListenerMock = vi.spyOn(window, 'removeEventListener');
 
     const { unmount } = renderHook(() => useHash());
     expect(addEventListenerMock).toBeCalledWith(

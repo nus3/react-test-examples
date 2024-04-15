@@ -1,5 +1,6 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, test, vi, expect } from 'vitest';
 
 import { delayedResponse } from '../../../test/helpers/response';
 import { userEventSetup } from '../../../test/helpers/userEventSetup';
@@ -23,9 +24,9 @@ describe('GetExamplesButton', () => {
   test('should render loading', async () => {
     const user = userEventSetup();
 
-    jest.useFakeTimers();
+    vi.useFakeTimers();
 
-    jest.spyOn(exampleApi, 'getExamples').mockImplementation(() =>
+    vi.spyOn(exampleApi, 'getExamples').mockImplementation(() =>
       delayedResponse<exampleApi.GetExamplesResponse>(500, {
         examples: [
           { id: '1', name: 'nus1' },
@@ -40,11 +41,11 @@ describe('GetExamplesButton', () => {
 
     await screen.findByTestId('Loading');
     act(() => {
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
     });
     await waitFor(() => expect(screen.queryByTestId('Loading')).toBeNull());
 
-    jest.runOnlyPendingTimers();
-    jest.useFakeTimers();
+    vi.runOnlyPendingTimers();
+    vi.useFakeTimers();
   });
 });
