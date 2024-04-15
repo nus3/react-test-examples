@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
 import 'whatwg-fetch'; // To run in jest environment
+import { vi } from 'vitest';
 
-jest.mock('../src/api/example');
+vi.mock('../src/api/example');
