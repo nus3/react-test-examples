@@ -1,11 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
 
-import {
-	delayedResponse,
-	resolveAdvanceTimerInAct,
-} from "../../../test/helpers/response";
+import { delayedResponse } from "../../../test/helpers/response";
 import { userEventSetup } from "../../../test/helpers/userEventSetup";
 import * as exampleApi from "../../api/example";
 import { GetExamplesButton } from "./GetExamplesButton";
@@ -25,7 +22,7 @@ describe("GetExamplesButton", () => {
 	});
 
 	test("should render loading", async () => {
-		vi.useFakeTimers();
+		vi.useFakeTimers({ shouldAdvanceTime: true });
 		const user = userEventSetup();
 
 		vi.spyOn(exampleApi, "getExamples").mockImplementation(() =>
@@ -39,10 +36,14 @@ describe("GetExamplesButton", () => {
 		);
 
 		render(<GetExamplesButton />);
+
 		await user.click(screen.getByRole("button"));
+
 		expect(screen.getByTestId("Loading")).toBeInTheDocument();
-		await resolveAdvanceTimerInAct(500);
-		expect(screen.queryByTestId("Loading")).toBeNull();
+		act(() => {
+			vi.advanceTimersByTime(500);
+		});
+		await waitFor(() => expect(screen.queryByTestId("Loading")).toBeNull());
 
 		vi.runOnlyPendingTimers();
 		vi.useRealTimers();
