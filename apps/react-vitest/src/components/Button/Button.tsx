@@ -1,14 +1,14 @@
-import { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from "react";
 
 export type ButtonProps = {
-  children: ReactNode;
-  onClick: () => void;
+	children: ReactNode;
+	onClick: () => void;
 };
 
 export const Button: FC<ButtonProps> = ({ children, onClick }) => {
-  return (
-    <button type="button" onClick={onClick}>
-      {children}
-    </button>
-  );
+	return (
+		<button type="button" onClick={onClick}>
+			{children}
+		</button>
+	);
 };

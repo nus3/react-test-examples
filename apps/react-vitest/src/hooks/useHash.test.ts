@@ -1,44 +1,44 @@
-import { renderHook, waitFor } from '@testing-library/react';
-import { describe, test, vi, expect } from 'vitest';
+import { renderHook, waitFor } from "@testing-library/react";
+import { describe, expect, test, vi } from "vitest";
 
-import { useHash } from './useHash';
+import { useHash } from "./useHash";
 
-describe('useHash', () => {
-  beforeEach(() => {
-    window.location.hash = '#hash';
-  });
+describe("useHash", () => {
+	beforeEach(() => {
+		window.location.hash = "#hash";
+	});
 
-  test('should get url hash', async () => {
-    const { result } = renderHook(() => useHash());
-    expect(result.current.hash).toBe('#hash');
+	test("should get url hash", async () => {
+		const { result } = renderHook(() => useHash());
+		expect(result.current.hash).toBe("#hash");
 
-    window.location.hash = '#changedHash';
+		window.location.hash = "#changedHash";
 
-    await waitFor(() => expect(result.current.hash).toBe('#changedHash'));
-  });
+		await waitFor(() => expect(result.current.hash).toBe("#changedHash"));
+	});
 
-  test('should remove event listener when unmount', () => {
-    const addEventListenerMock = vi.spyOn(window, 'addEventListener');
-    const removeEventListenerMock = vi.spyOn(window, 'removeEventListener');
+	test("should remove event listener when unmount", () => {
+		const addEventListenerMock = vi.spyOn(window, "addEventListener");
+		const removeEventListenerMock = vi.spyOn(window, "removeEventListener");
 
-    const { unmount } = renderHook(() => useHash());
-    expect(addEventListenerMock).toBeCalledWith(
-      'hashchange',
-      expect.any(Function)
-    );
+		const { unmount } = renderHook(() => useHash());
+		expect(addEventListenerMock).toBeCalledWith(
+			"hashchange",
+			expect.any(Function),
+		);
 
-    unmount();
-    expect(removeEventListenerMock).toBeCalledWith(
-      'hashchange',
-      expect.any(Function)
-    );
-  });
+		unmount();
+		expect(removeEventListenerMock).toBeCalledWith(
+			"hashchange",
+			expect.any(Function),
+		);
+	});
 
-  test('should update url hash', () => {
-    const { result } = renderHook(() => useHash());
+	test("should update url hash", () => {
+		const { result } = renderHook(() => useHash());
 
-    result.current.updateHash('#updatedHash');
+		result.current.updateHash("#updatedHash");
 
-    expect(window.location.hash).toBe('#updatedHash');
-  });
+		expect(window.location.hash).toBe("#updatedHash");
+	});
 });
