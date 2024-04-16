@@ -72,9 +72,6 @@ importers:
       '@vitest/ui':
         specifier: 1.5.0
         version: 1.5.0(vitest@1.5.0)
-      identity-obj-proxy:
-        specifier: 3.0.0
-        version: 3.0.0
       jsdom:
         specifier: 24.0.0
         version: 24.0.0
@@ -7507,10 +7504,6 @@ packages:
       uglify-js: 3.15.5
     dev: true
 
-  /harmony-reflect@1.6.2:
-    resolution: {integrity: sha512-HIp/n38R9kQjDEziXyDTuW3vvoxxyxjxFzXLrBr18uB47GnSt+G9D29fqrpM5ZkspMcPICud3XsBJQ4Y2URg8g==}
-    dev: true
-
   /has-bigints@1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
     dev: true
@@ -7824,13 +7817,6 @@ packages:
     engines: {node: '>= 6'}
     dependencies:
       postcss: 7.0.39
-    dev: true
-
-  /identity-obj-proxy@3.0.0:
-    resolution: {integrity: sha512-00n6YnVHKrinT9t0d9+5yZC6UBNJANpYEQvL2LlX6Ab9lnmxzIRcEmTPuyGScvl1+jKuCICX1Z0Ab1pPKKdikA==}
-    engines: {node: '>=4'}
-    dependencies:
-      harmony-reflect: 1.6.2
     dev: true
 
   /ieee754@1.2.1:
