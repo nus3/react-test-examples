@@ -1,10 +1,10 @@
-# react-swc-jest
+# react-vitest
 
 ## Tools
 
 - Testing Library
 - Vite
-- `@swc/jest`
+- Vitest
 - Storybook
 
 ## Test Case
