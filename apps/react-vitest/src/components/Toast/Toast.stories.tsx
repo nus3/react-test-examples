@@ -1,6 +1,6 @@
-import { userEvent, within } from "@storybook/test";
+import { expect, userEvent, within } from "@storybook/test";
 
-import { Toast } from "./Toast";
+import { AUTO_CLOSE_TIME, TOAST_ANIMATION_TIME, Toast } from "./Toast";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -18,6 +18,13 @@ export const Default: Story = {
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
 		const btn = canvas.getByRole("button");
+
 		await userEvent.click(btn);
+		await expect(canvas.getByRole("alert")).toBeInTheDocument();
+
+		// HACK: 不安定になる気しかしない
+		setTimeout(async () => {
+			await expect(canvas.queryByRole("alert")).toBeNull();
+		}, AUTO_CLOSE_TIME + TOAST_ANIMATION_TIME);
 	},
 };

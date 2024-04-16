@@ -13,8 +13,9 @@
 		"test": "vitest",
 		"test:ui": "vitest --ui",
 		"type-check": "tsc --noEmit",
-		"storybook": "storybook dev -p 1234",
-		"build-storybook": "storybook build"
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build",
+		"test-storybook": "test-storybook"
 	},
 	"dependencies": {
 		"clsx": "1.1.1",
@@ -30,6 +31,7 @@
 		"@storybook/react": "8.0.8",
 		"@storybook/react-vite": "8.0.8",
 		"@storybook/test": "8.0.8",
+		"@storybook/test-runner": "0.17.0",
 		"@testing-library/jest-dom": "6.4.2",
 		"@testing-library/react": "15.0.2",
 		"@testing-library/user-event": "14.5.2",
