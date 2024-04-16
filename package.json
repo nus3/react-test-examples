@@ -6,10 +6,6 @@
   "author": "nus3 <hadayota33@gmail.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "yarn@3.2.1",
-  "workspaces": [
-    "apps/*"
-  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
