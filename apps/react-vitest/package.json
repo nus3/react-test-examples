@@ -11,6 +11,7 @@
 		"fix:unsafe": "biome check --apply-unsafe .",
 		"lint": "biome lint .",
 		"test": "vitest",
+    "test:ui": "vitest --ui",
 		"type-check": "tsc --noEmit",
 		"storybook": "start-storybook -p 1234",
 		"build-storybook": "build-storybook"
@@ -31,8 +32,8 @@
 		"@storybook/testing-library": "0.0.11",
 		"@storybook/testing-react": "1.3.0",
 		"@testing-library/jest-dom": "6.4.2",
-		"@testing-library/react": "13.3.0",
-		"@testing-library/user-event": "14.2.0",
+		"@testing-library/react": "15.0.2",
+		"@testing-library/user-event": "14.5.2",
 		"@types/react": "18.2.25",
 		"@types/react-dom": "18.2.25",
 		"@vitejs/plugin-react": "4.2.1",
