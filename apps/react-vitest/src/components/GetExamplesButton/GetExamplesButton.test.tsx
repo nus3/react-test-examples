@@ -22,9 +22,8 @@ describe("GetExamplesButton", () => {
 	});
 
 	test("should render loading", async () => {
+		vi.useFakeTimers({ shouldAdvanceTime: true });
 		const user = userEventSetup();
-
-		vi.useFakeTimers();
 
 		vi.spyOn(exampleApi, "getExamples").mockImplementation(() =>
 			delayedResponse<exampleApi.GetExamplesResponse>(500, {
@@ -37,15 +36,16 @@ describe("GetExamplesButton", () => {
 		);
 
 		render(<GetExamplesButton />);
+
 		await user.click(screen.getByRole("button"));
 
-		await screen.findByTestId("Loading");
+		expect(screen.getByTestId("Loading")).toBeInTheDocument();
 		act(() => {
 			vi.advanceTimersByTime(500);
 		});
 		await waitFor(() => expect(screen.queryByTestId("Loading")).toBeNull());
 
 		vi.runOnlyPendingTimers();
-		vi.useFakeTimers();
+		vi.useRealTimers();
 	});
 });

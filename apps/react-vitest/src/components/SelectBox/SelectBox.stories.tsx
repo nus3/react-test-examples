@@ -1,16 +1,17 @@
-import { action } from "@storybook/addon-actions";
-
 import { SelectBox } from "./SelectBox";
 
-import type { ComponentStoryObj, Meta } from "@storybook/react";
+import type { StoryObj, Meta } from "@storybook/react";
+import { fn } from "@storybook/test";
 
-export default {
-	title: "SelectBox",
+const meta: Meta = {
 	component: SelectBox,
-} as Meta;
+} satisfies Meta<typeof SelectBox>;
 
-export const Default: ComponentStoryObj<typeof SelectBox> = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
 	args: {
-		onClick: action("onClick"),
+		onClick: fn(),
 	},
 };
