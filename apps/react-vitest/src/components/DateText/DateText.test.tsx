@@ -4,14 +4,14 @@ import { describe, expect, test, vi } from "vitest";
 import { DateText } from "./DateText";
 
 describe("DateText", () => {
-	test("should render date", () => {
-		vi.useFakeTimers();
-		vi.setSystemTime(new Date("1991/08/02").getTime());
+  test("should render date", () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("1991/08/02").getTime());
 
-		render(<DateText />);
-		expect(screen.getByText("1991/08/02")).toBeInTheDocument();
+    render(<DateText />);
+    expect(screen.getByText("1991/08/02")).toBeInTheDocument();
 
-		vi.runOnlyPendingTimers();
-		vi.useRealTimers();
-	});
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
+  });
 });

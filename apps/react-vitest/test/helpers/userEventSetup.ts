@@ -6,10 +6,10 @@ import { vi } from "vitest";
  * helper of user-event setup
  */
 export function userEventSetup(
-	options: Parameters<(typeof userEvent)["setup"]>[0] = {},
+  options: Parameters<(typeof userEvent)["setup"]>[0] = {},
 ): ReturnType<(typeof userEvent)["setup"]> {
-	return userEvent.setup({
-		advanceTimers: vi.advanceTimersByTime,
-		...options,
-	});
+  return userEvent.setup({
+    advanceTimers: vi.advanceTimersByTime,
+    ...options,
+  });
 }
