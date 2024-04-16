@@ -30,6 +30,7 @@ const SelectButton: FC<{
 
 	return (
 		<button
+			type="button"
 			className={styles.btn}
 			ref={ref}
 			tabIndex={focused ? 0 : -1}
@@ -48,6 +49,7 @@ export const SelectBox: FC<SelectBoxProps> = ({ onClick, defaultValue }) => {
 	const { focusedValue, moveFocus } = useFocus(SELECT_BOX_VALUES, defaultValue);
 
 	return (
+		// biome-ignore lint/a11y/useAriaActivedescendantWithTabindex: <explanation>
 		<table
 			role="grid"
 			aria-activedescendant={
@@ -70,6 +72,7 @@ export const SelectBox: FC<SelectBoxProps> = ({ onClick, defaultValue }) => {
 						<td
 							key={value}
 							id={`selectBoxCell_${value}`}
+							// biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: <explanation>
 							role="gridcell"
 							aria-selected={value === selectedValue}
 						>

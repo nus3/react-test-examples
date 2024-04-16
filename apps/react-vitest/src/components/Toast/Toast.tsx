@@ -53,6 +53,7 @@ export const Toast: FC<ToastProps> = ({ children }) => {
 	return (
 		<div>
 			<button
+				type="button"
 				disabled={show}
 				onClick={() => {
 					setShow((show) => !show);

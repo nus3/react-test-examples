@@ -75,7 +75,7 @@ describe("SelectBox", () => {
 		const lastCellBtn = within(cells[3]).getByRole("button");
 		expect(lastCellBtn).not.toHaveFocus();
 
-		await userEvent.keyboard(`{ArrowRight>3/}`);
+		await userEvent.keyboard("{ArrowRight>3/}");
 		expect(lastCellBtn).toHaveFocus();
 		expect(screen.getByRole("grid")).toHaveAttribute(
 			"aria-activedescendant",
@@ -94,7 +94,7 @@ describe("SelectBox", () => {
 		const lastCellBtn = within(cells[3]).getByRole("button");
 		expect(lastCellBtn).toHaveFocus();
 
-		await userEvent.keyboard(`{ArrowLeft>3/}`);
+		await userEvent.keyboard("{ArrowLeft>3/}");
 		expect(firstCellBtn).toHaveFocus();
 		expect(screen.getByRole("grid")).toHaveAttribute(
 			"aria-activedescendant",
@@ -113,7 +113,7 @@ describe("SelectBox", () => {
 		const lastCellBtn = within(cells[3]).getByRole("button");
 		expect(lastCellBtn).toHaveFocus();
 
-		await userEvent.keyboard(`{ArrowLeft>3/}`);
+		await userEvent.keyboard("{ArrowLeft>3/}");
 		expect(firstCellBtn).toHaveFocus();
 		expect(screen.getByRole("grid")).toHaveAttribute(
 			"aria-activedescendant",
@@ -128,7 +128,7 @@ describe("SelectBox", () => {
 		const onClickMock = vi.fn();
 		render(<SelectBox onClick={onClickMock} />);
 
-		await userEvent.keyboard(`{ArrowRight>3/}`);
+		await userEvent.keyboard("{ArrowRight>3/}");
 		await userEvent.keyboard(key);
 
 		expect(onClickMock).toHaveBeenCalledWith(3);
