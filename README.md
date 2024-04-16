@@ -12,25 +12,25 @@ This repository is a monorepo using `turborepo`.
 
 ```shell
 # Install dependencies
-$ yarn
+$ pnpm i --frozen-lockfile
 
 # Start storybook
-$ yarn storybook
+$ pnpm storybook
 
 # Test
-$ yarn test
+$ pnpm test
 
 # If you want to run it in a specific application
-$ cd apps/react-swc-jest
+$ cd apps/react-vitest
 # Run npm scripts defined in the application
-$ yarn dev
+$ pnpm dev
 ```
 
 ## Applications
 
 For more information on each application, please see the README below.
 
-- [`react-swc-jest`](apps/react-swc-jest)
+- [`react-vitest`](apps/react-vitest)
 
 ## Contributing
 
