@@ -1,4 +1,4 @@
-import { composeStories } from "@storybook/testing-react";
+import { composeStories } from "@storybook/react";
 import { act, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
@@ -38,7 +38,7 @@ describe("Toast", () => {
 		const { container } = render(<Default />);
 		expect(screen.queryByRole("alert")).toBeNull();
 
-		await Default.play({ canvasElement: container });
+		await Default.play?.({ canvasElement: container });
 		expect(screen.getByRole("alert")).toBeInTheDocument();
 
 		act(() => {

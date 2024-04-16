@@ -1,12 +1,14 @@
 import { DateText } from "./DateText";
 
-import type { ComponentStoryObj, Meta } from "@storybook/react";
+import type { StoryObj, Meta } from "@storybook/react";
 
-export default {
-	title: "DateText",
+const meta: Meta = {
 	component: DateText,
-} as Meta;
+} satisfies Meta<typeof DateText>;
 
-export const Default: ComponentStoryObj<typeof DateText> = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
 	args: {},
 };

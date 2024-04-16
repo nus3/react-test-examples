@@ -1,17 +1,18 @@
-import { action } from "@storybook/addon-actions";
-
+import { fn } from "@storybook/test";
 import { Button } from "./Button";
 
-import type { ComponentStoryObj, Meta } from "@storybook/react";
+import type { StoryObj, Meta } from "@storybook/react";
 
-export default {
-	title: "Button",
+const meta: Meta = {
 	component: Button,
-} as Meta;
+} satisfies Meta<typeof Button>;
 
-export const Default: ComponentStoryObj<typeof Button> = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
 	args: {
 		children: "label",
-		onClick: action("onClick"),
+		onClick: fn(),
 	},
 };

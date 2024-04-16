@@ -1,21 +1,23 @@
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/test";
 
 import { Toast } from "./Toast";
 
-import type { ComponentStoryObj, Meta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
-export default {
-	title: "Toast",
+const meta: Meta = {
 	component: Toast,
-} as Meta;
+} satisfies Meta<typeof Toast>;
 
-export const Default: ComponentStoryObj<typeof Toast> = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
 	args: {
 		children: "Hello nus3 in Storybook!!",
 	},
-	play: ({ canvasElement }) => {
+	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
 		const btn = canvas.getByRole("button");
-		userEvent.click(btn);
+		await userEvent.click(btn);
 	},
 };
