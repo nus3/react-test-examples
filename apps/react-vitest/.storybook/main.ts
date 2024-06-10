@@ -28,8 +28,10 @@ const config: StorybookConfig = {
     return config;
   },
 
-  docs: {
-    autodocs: true,
+  docs: {},
+
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
   },
 };
 
