@@ -1,6 +1,6 @@
 import { type FC, useState } from "react";
 
-import { type GetExamplesResponse, getExamples } from "../../api/example";
+import { type GetExamplesResponse, getExamples } from "#src/api/example";
 
 export const GetExamplesButton: FC = () => {
   const [isLoading, setIsLoading] = useState(false);

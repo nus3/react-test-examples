@@ -17,6 +17,17 @@
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook"
   },
+  "imports": {
+    "#src/api/example": {
+      "storybook": "./src/api/example.mock.ts",
+      "default": "./src/api/example.ts"
+    },
+    "#*": [
+      "./*",
+      "./*.ts",
+      "./*.tsx"
+    ]
+  },
   "dependencies": {
     "clsx": "1.1.1",
     "react": "18.2.0",
@@ -42,7 +53,7 @@
     "jsdom": "24.0.0",
     "msw": "2.2.13",
     "storybook": "^8.1.6",
-    "typescript": "5.2.2",
+    "typescript": "5.4.5",
     "vite": "5.2.8",
     "vitest": "1.5.0"
   }
