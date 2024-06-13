@@ -1,6 +1,7 @@
 import type { GetExamplesRequest, GetExamplesResponse } from "#src/api/example";
+import { fn } from "@storybook/test";
 
-export const getExamples = async (_params?: GetExamplesRequest) => {
+export const getExamples = fn(async (_params?: GetExamplesRequest) => {
   const response: GetExamplesResponse = {
     examples: [
       { id: "1", name: "nus1" },
@@ -9,4 +10,4 @@ export const getExamples = async (_params?: GetExamplesRequest) => {
     ],
   };
   return response;
-};
+}).mockName("getExamples");
